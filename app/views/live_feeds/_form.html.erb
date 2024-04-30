@@ -1,0 +1,26 @@
+<%= form_with(model: live_feed) do |form| %>
+  <% if live_feed.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(live_feed.errors.count, "error") %> prohibited this live_feed from being saved:</h2>
+
+      <ul>
+        <% live_feed.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="question-send">
+    <%= form.text_field :title,placeholder: "Title",class:"question-title input" %>
+  </div>
+<div>
+  <div>
+    <%= form.text_area :question_body,placeholder: "Question Body",class:"question-body input" %>
+  </div>
+
+  <div>
+    <%= form.submit '' , class: 'send' %>
+  </div>
+  </div>
+<% end %>

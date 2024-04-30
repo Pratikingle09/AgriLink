@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag "notification" %>
+
+<div id="alerts" class="notification">
+  <div class="head">
+    <%= link_to root_path do %>
+      <div class="back">
+        <p><span><</span> Back</p>
+      </div>
+    <% end %>
+
+    <div class="count">
+      <h2><%=@alerts.length%></h2>
+      <h2>Notifications</h2>
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <div class="scroll">
+      <% @alerts.each do |alert| %>
+        <div class="alert-body">
+        <p class="alert-title"><%= alert.title %></p>
+        <p class="alert-data"><%= alert.alert %></p>
+          <%= button_to "X", alert, method: :delete %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to "New Notification", new_alert_path %>
+
+</div>

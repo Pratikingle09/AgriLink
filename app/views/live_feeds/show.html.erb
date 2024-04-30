@@ -1,0 +1,50 @@
+  <%= link_to "Back", live_feeds_path , class:"to-feed" %>
+
+<div class="question-answer">
+<p style="color: green"><%= notice %></p>
+
+   <div class="question">
+<%if current_user.id == @live_feed.asked_by%>
+   <div class="option">
+  <%= link_to image_tag('edit.png',class:"edit"), edit_live_feed_path(@live_feed) %> |
+  <%= button_to image_tag('delete.png',class:"edit"), @live_feed,method: :delete %>
+</div>
+  <%end%>
+   <p class='q-title'> <%= @live_feed.title %></p>
+   <p class='q-body'> <%= @live_feed.question_body %></p>
+   <p class="time"> <%= @live_feed.created_at.strftime('%d %b') %></p>
+    </div>
+
+
+ <div class="ans">
+<% @live_feed.answers.each do |ans| %>
+<div class="question">
+  <p class="q-body">
+    <%= ans.answer_body %>
+  </p>
+
+    <p class="ans-by"> Answered by
+    <strong>
+    <%= ans.asked_by %>
+    </strong>
+    on 
+    <strong><%= ans.created_at.strftime("%d %b")%></strong>
+  </p>
+  </div>
+<% end %>
+</div>
+
+
+
+<div class="ans-que"></div>
+<%= form_with(model: [@live_feed, @answer]) do |form| %>
+  <p>
+    <%= form.text_area :answer_body ,placeholder: "Answer the Question",class:"question-body input" %>
+  </p>
+  <p>
+    <%= form.submit "",class: 'send' %>
+  </p>
+<% end %>
+ 
+
+</div>

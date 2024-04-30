@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag "authentication" %>
+<div class ="authorisation-container">
+<div class ="login-container">
+<h2>Already have an account?</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.email_field :email,placeholder: "Email",class:"input", autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password,placeholder: "Password",class:"input", autocomplete: "current-password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field check">
+      <%= f.check_box :remember_me %>
+      <p>
+      <%= f.label :remember_me,class:"remind" %>
+      </p>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Log in",class:"submit" %>
+  </div>
+<% end %>
+<div class="islogin">
+<p>Don’t have an account?</p>
+<p>
+<%= render "devise/shared/links" %>
+</p>
+</div>
+</div>
+</div>

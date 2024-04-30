@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AgriLink</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  <%if user_signed_in?%>
+  <nav class="nav">
+    <%= image_tag("Logo.png", alt: "logo",class:"logo") %>
+<div class="nav-cont">
+<%= link_to 'Home', root_path, class: "nav-item #{'active' if current_page?(root_path)}" %>
+
+  <% if current_user.account_type=="student"%>
+  <%= link_to 'Learning', learning_index_path ,class: "nav-item #{'active' if current_page?(learning_index_path)}" %>
+  <%end%>
+  <% if current_user.account_type=="seller"%>
+  <%= link_to 'Dashboard', root_path ,class: 'nav-item' %>
+  <%end%>
+  <% if current_user.account_type=="farmer"%>
+  <%= link_to 'Questions', my_questions_question_path ,class: "nav-item #{'active' if current_page?(my_questions_question_path)}"%>
+  <%end%>
+  <%= link_to 'Shop', root_path ,class: 'nav-item'%>
+  <%= link_to 'Feed',  live_feeds_path ,class: "nav-item #{'active' if current_page?(live_feeds_path)}"%>
+  <%= link_to 'Notifications', alerts_path ,class: "nav-item #{'active' if current_page?(alerts_path)}" %>
+
+
+</div>
+    <div class="sub-nav">
+    <% if current_user.account_type == "student" %>
+    <%= image_tag("Student.png", alt: "profile icon",class:"profile") %>
+    <%end%>
+
+    <% if current_user.account_type == "farmer" %>
+    <%= image_tag("farmer.png", alt: "profile icon",class:"profile") %>
+    <%end%>
+
+    <% if current_user.account_type == "seller" %>
+    <%= image_tag("seller.png", alt: "profile icon",class:"profile") %>
+    <%end%>
+
+    <%= button_to "Logout", destroy_user_session_path,class:"button", method: :delete %>
+    </div>
+  </nav>
+  <% end %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>

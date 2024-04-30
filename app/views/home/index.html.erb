@@ -1,0 +1,22 @@
+<%= stylesheet_link_tag "home" %>
+
+<div class="home">
+<div class="sub">
+  <%= render "cart", acc_data: @cart1 %>
+<%= link_to alerts_path do %>
+  <%= render "cart", acc_data: @cart2 %>
+<% end %>
+  </div>
+  <div class="sub">
+  <%= render "cart", acc_data: @cart3 %>
+  <%= render "cart", acc_data: @cart4 %>
+  </div>
+</div>
+
+
+
+
+
+
+
+

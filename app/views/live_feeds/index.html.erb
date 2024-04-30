@@ -1,0 +1,25 @@
+<%
+=begin%>
+ <p style="color: green;position:absolute"><%= notice %></p> 
+<%
+=end%>
+
+<%= stylesheet_link_tag "live_feed" %>
+
+
+<div class="feed-container">
+<div id="live_feeds">
+  <% @live_feeds.each do |live_feed| %>
+      <%= link_to live_feed ,class: 'link' do %>
+   <div class="question">
+   <p class='q-title'> <%=live_feed.title %></p>
+   <p class='q-body'> <%=live_feed.question_body %></p>
+   <p class="time"> <%=live_feed.created_at.strftime('%d %b') %></p>
+    </div>
+    <%end%>
+  <% end %>
+</div>
+</div>
+<div class="ask_question">
+<%= render "form", live_feed: @live_feed %>
+</div>

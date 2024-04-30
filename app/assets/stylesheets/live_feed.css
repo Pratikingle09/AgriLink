@@ -1,0 +1,193 @@
+.feed-container{
+    margin-top: 10rem;
+    overflow: hidden;
+}
+
+#live_feeds{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    height: 430px;
+    position: fixed;
+    width: 99vw;
+    overflow-y: auto;
+}
+.question{
+    position: relative;
+    background-color: rgb(214, 223, 232);
+    width: 90vw;
+    min-height: 2rem;
+    height: auto;
+    border-radius: 5px;
+    padding-left: 20px;
+    text-decoration: none;
+    border: 1px solid;
+    color: #111010;
+}
+.ask_question{
+    display: flex;
+    justify-content: center;
+    margin-top: 27rem;
+}
+.submit-btn{
+    border: none;
+    background: none;
+}
+.submit-btn:hover{
+    color: white;
+}
+.question-body{
+    position: relative;
+    width: 98%;
+    height: 40px;
+    background-image: url('send.png');
+    background-repeat: no-repeat;
+    background-position: 75rem center; /* Adjust the position of the icon */
+    padding-left: 10px; /* Ensure enough space for the icon */
+    background-size: 30px 30px;
+    color: #111010;
+    font-size: large;
+}
+.question-title{
+    width: 80vw;
+    height: 20px;
+    border-radius: 7px;
+    color: black;
+}
+.question-send{
+    position: relative;
+}
+.send {
+    background-color:transparent;
+    border: none;
+    color: #faf7f7; /* Button text color */
+    cursor: pointer;
+    padding: 10px;
+    padding-left: 22px;
+    position: absolute;
+    right:160px; 
+    top: 42.5rem;/* Position the button at the right end of the input field */
+  }
+  
+.question-title{
+    color: rgb(9, 9, 9);
+    text-decoration: none;
+    font-size: larger;
+}
+.q-title{
+    color: #080808;
+    font-size: x-large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}
+.q-body{
+    color: #090909;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.time{
+    color: rgb(100, 97, 97);
+    margin-left: 80rem;
+}
+.link{
+    text-decoration: none;
+}
+
+
+
+
+
+/* css for the question and answer page */
+.question-answer{
+    position: relative;
+    margin-top: 12rem;
+}
+.edit{
+    width: 20px;
+    height: 20px;
+    
+}
+button{
+    background: none;
+    border: none;
+}
+.option{
+    display: flex;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+.to-feed{
+    position: absolute;
+    top: 7.5rem;
+    width: 100px;
+    height: 40px;
+    background-color: #fff;
+    border: 0 solid #e2e8f0;
+    border-radius: 1.5rem;
+    box-sizing: border-box;
+    color: #0d172a;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none #0d172a solid;
+    text-decoration-thickness: auto;
+    transition: all .1s cubic-bezier(.4, 0, .2, 1);
+    box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+.to-feed:hover {
+    background-color: #1e293b;
+    color: #fff;
+  }
+  .to-feed {
+    line-height: 2em;
+  }
+
+#question_feeds{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 99vw;
+    overflow-y: auto;
+
+  }
+
+
+  /* ans css */
+
+  .ans{
+    margin-top: 20px;
+    margin-left: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ans .question{
+    background-color: rgb(136, 203, 136);
+    font-size: large;
+  }
+  .ans-by{
+    margin-left: 75rem;
+    font-size: small;
+  }
+  .question-answer .send{
+    background-color: transparent;
+    top: 69rem;
+    right: 11.5rem;
+  }
+  .question-answer .question-body{
+    width: 80rem;
+    margin-left: 90px;
+  }
+  ans-que{
+    position: relative;
+  }

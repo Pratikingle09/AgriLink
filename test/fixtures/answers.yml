@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  answer_body: MyText
+  asked_by: 1
+  Live_Feed: one
+
+two:
+  answer_body: MyText
+  asked_by: 1
+  Live_Feed: two

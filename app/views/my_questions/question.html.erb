@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<%= stylesheet_link_tag "live_feed" %>
+
+
+<div class="feed-container">
+<div id="question_feeds">
+  <% @questions.each do |question| %>
+   <div class="question">
+   <p class='q-title'> <%=question.title %></p>
+   <p class='q-body'> <%=question.question_body %></p>
+   <p class="time"> <%=question.created_at.strftime('%d %b') %></p>
+    </div>
+  <% end %>
+</div>

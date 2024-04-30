@@ -1,0 +1,13 @@
+<h1>Learning#index</h1>
+<div class="learning" >
+  <% @extracted_data.each do |e| %>
+  <div class="question disease">
+ <p>No:<%= e[:id]%></p>
+ <p>Disease:<%= e[:name]%></p>
+ <p>Description:<%= e[:description]%></p>
+ <p>Causes: <%= e[:causes].join(", ")%></p>
+ <p>Symptoms: <%= e[:symptoms].join(", ")%></p>
+ <p>Cures:<%= e[:cures].join(", ")%></p>
+  </div>
+  <%end%>
+  </div>
