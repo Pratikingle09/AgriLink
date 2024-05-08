@@ -1,7 +1,7 @@
 
 .authorisation-container {
-    width: 100vw;
-    height: 100vh;
+    width: 99vw;
+    height: 99vh;
     box-sizing: border-box;
     display: inline-flex;
     flex-direction: column;
@@ -101,4 +101,19 @@ select {
 }
 .remind{
     color: #0d2507;
+}
+
+@media (max-width: 320px){
+
+    .input{
+        width: 15rem;
+        margin-left: 30px;
+    }
+
+    .check{
+        margin-left: 30px;
+    }
+    select{
+        margin-left: 30px;
+    }
 }

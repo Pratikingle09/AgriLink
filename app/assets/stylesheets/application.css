@@ -17,10 +17,19 @@
 .home{
     margin-top: 150px;
 }
+.toast{
+    z-index: 10000;
+    position: absolute;
+    left: 40%;
+    top: 5rem;
+}
+.container{
+    margin-top: 8rem;
+}
 .nav{
     display: flex;
     justify-content: center;
-    gap: 25rem;
+    gap: 8rem;
     background-color: rgb(109, 105, 105);
     position: fixed;
     top: 0px;
@@ -28,7 +37,6 @@
     width: 100vw;
     height: 6rem;
     z-index: 1000;
-
 }
 .nav-cont{
     margin-top: 35px;
@@ -58,7 +66,6 @@
     margin-right: 40px;
 }
 .logo{
-
     margin-left: 50px;
     padding-top: 30px;
 }
@@ -96,4 +103,107 @@
 }
 .disease{
     background-color: rgb(167, 226, 226);
+}
+.nav-cart{
+    width: 50px;
+    height: 50px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.new-head{
+margin-left: 10px;
+}
+.ham{
+    display: none;
+}
+.mobile-nav{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 3rem;
+    background-color: transparent;
+}
+.mobile-nav-item{
+    padding: 5px;
+    text-decoration: none;
+    border: 1px rgb(10, 10, 10) solid;
+    background-color: #71e082;
+    color: black;
+}
+.mobile-container{
+    display: none;
+}
+
+
+@media (min-width: 320px){
+.new-head{
+    margin-left: 45%;
+}
+}
+
+
+
+@media (max-width: 320px){
+    .nav{
+        gap: 1px;
+        width: 20rem;
+        height: 3rem;
+    }
+    .nav-cont{
+        display: none;
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+    }
+    .nav-item{
+        display: none;
+    }
+    .sub-nav{
+        padding-top: 2px;
+        display: flex;
+        gap: 10px;
+        margin-left: 180px;
+    }
+    .profile{
+        margin-top: 8px;
+        width: 30px;
+        height: 30px;
+    }
+    .logo{
+        display: none;
+    }
+    .button{
+        width: 60px;
+        height: 25px;
+    }
+    .ham{
+        display: block;
+        width: 25px;
+        height: 25px;
+        z-index: 100000;
+        position: absolute;
+        top: 10px;
+        padding-left: 10px;
+    }
+    .mobile-container{
+        display: block;
+    }
+    .form{
+        margin-right: 30px;
+    }
+    .label{
+        margin-left: 30px;
+    }
+    .new-head{
+        font-size: large;
+        margin-right: 20px;
+    }
+    .learning{
+        margin-left: 15px;
+    }
+
 }

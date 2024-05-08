@@ -1,0 +1,36 @@
+
+<h1 class="cart-head">Welcome to Your Seller Dashboard</h1>
+<div class="seller-link">
+<%= link_to 'Products', seller_dashboard_products_path,class:"link seller-prod"%>
+<%= link_to 'Orders', seller_dashboard_orders_path,class:"link seller-prod" %>
+</div>
+<h1>Your Listed Products</h1>
+<% if @products.any? %>
+  <table id="customers">
+    <thead>
+      <tr>
+        <th>Produvt Id</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.id %></td>
+          <td><%= product.product_name %></td>
+          <td><%= number_to_currency(product.price, unit: '₹', precision: 2) %></td>
+          <td><%=  product.quantity %></td>
+          <td>
+            <%= link_to 'Edit', edit_product_path(product), class: 'cart-remove' %>
+
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No products listed yet.</p>
+<% end %>

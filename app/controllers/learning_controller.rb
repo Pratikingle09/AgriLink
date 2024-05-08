@@ -4,7 +4,6 @@ class LearningController < ApplicationController
     @crop_diseases=  JSON.parse(respo.body)
     extracted_data = []
 
-# Loop through each disease hash in @crop_diseases
 @crop_diseases.each do |disease|
    id = disease["id"]                          
    name = disease["name"]                      

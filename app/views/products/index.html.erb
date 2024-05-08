@@ -1,0 +1,37 @@
+<div class="store">
+<p class="toast" style="color: green"><%= notice %></p>
+
+<% if current_user.account_type != "student"%>
+<div class="add-product">
+<%= link_to "Add product", new_product_path,class:"link btn" %>
+</div>
+<% end %>
+
+<%= search_form_for @q, url: products_path do |f| %>
+  <div class="search">
+  <div>
+    <%= f.text_field :product_name_cont , placeholder:"Search",class:"input input-search"%>
+  </div>
+  <div>
+    <%= f.submit "Search",class:"search-btn" %>
+  </div>
+  </div>
+<% end %>
+
+<div id="products">
+  <% @products.each do |product| %>
+  <div class="product-card">
+  <%= link_to  product, class: 'link' do %>
+     <% if product.product_image.attached? %>
+  <%= image_tag product.product_image , class:"product_image" %>
+<% end %>
+<p class="product-name"><%= product.product_name%></p>
+<p class="product-price"><%= number_to_currency(product.price,unit:'₹',precision:2)%>
+</p>
+
+  <% end %>
+</div>
+  <% end %>
+</div>
+</div>
+

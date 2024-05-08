@@ -14,25 +14,49 @@
   <%if user_signed_in?%>
   <nav class="nav">
     <%= image_tag("Logo.png", alt: "logo",class:"logo") %>
+
+   <button class="menu" id="menu-btn" ><%= image_tag("more.png", alt: "hamburger-menu",class:"ham") %></button> 
+
+
 <div class="nav-cont">
 <%= link_to 'Home', root_path, class: "nav-item #{'active' if current_page?(root_path)}" %>
 
   <% if current_user.account_type=="student"%>
   <%= link_to 'Learning', learning_index_path ,class: "nav-item #{'active' if current_page?(learning_index_path)}" %>
   <%end%>
-  <% if current_user.account_type=="seller"%>
-  <%= link_to 'Dashboard', root_path ,class: 'nav-item' %>
+  <% if current_user.account_type!="student"%>
+  <%= link_to 'Dashboard', seller_dashboard_index_path ,class: "nav-item #{'active' if current_page?(seller_dashboard_index_path)}"%>
   <%end%>
-  <% if current_user.account_type=="farmer"%>
+  <% if current_user.account_type!="seller"%>
   <%= link_to 'Questions', my_questions_question_path ,class: "nav-item #{'active' if current_page?(my_questions_question_path)}"%>
   <%end%>
-  <%= link_to 'Shop', root_path ,class: 'nav-item'%>
+  <%= link_to 'Shop', products_path ,class: "nav-item #{'active' if current_page?(products_path)}"%>
   <%= link_to 'Feed',  live_feeds_path ,class: "nav-item #{'active' if current_page?(live_feeds_path)}"%>
   <%= link_to 'Notifications', alerts_path ,class: "nav-item #{'active' if current_page?(alerts_path)}" %>
+
+<div class="mobile-container" id="menu" style="display:none;" >
+<div class="mobile-nav">
+<%= link_to 'Home', root_path, class: "mobile-nav-item #{'active' if current_page?(root_path)}" %>
+
+  <% if current_user.account_type=="student"%>
+  <%= link_to 'Learning', learning_index_path ,class: "mobile-nav-item #{'active' if current_page?(learning_index_path)}" %>
+  <%end%>
+  <% if current_user.account_type!="student"%>
+  <%= link_to 'Dashboard', seller_dashboard_index_path ,class: "mobile-nav-item #{'active' if current_page?(seller_dashboard_index_path)}"%>
+  <%end%>
+  <% if current_user.account_type!="seller"%>
+  <%= link_to 'Questions', my_questions_question_path ,class: "mobile-nav-item #{'active' if current_page?(my_questions_question_path)}"%>
+  <%end%>
+  <%= link_to 'Shop', products_path ,class: "mobile-nav-item #{'active' if current_page?(products_path)}"%>
+  <%= link_to 'Feed',  live_feeds_path ,class: "mobile-nav-item #{'active' if current_page?(live_feeds_path)}"%>
+  <%= link_to 'Notifications', alerts_path ,class: "mobile-nav-item #{'active' if current_page?(alerts_path)}" %>
+</div>
+</div>
 
 
 </div>
     <div class="sub-nav">
+  <%= link_to image_tag("shopping-cart.png",class:"nav-cart"), carts_path ,class: "nav-item #{'active' if current_page?(carts_path)}" %>
     <% if current_user.account_type == "student" %>
     <%= image_tag("Student.png", alt: "profile icon",class:"profile") %>
     <%end%>
@@ -53,4 +77,15 @@
   <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
+
+
+  <script>
+
+document.getElementById("menu-btn").addEventListener("click",menuFunction);
+
+  function menuFunction(){
+    let display = document.getElementById("menu").style.display
+    display=="none"?document.getElementById("menu").style.display= 'block':document.getElementById("menu").style.display="none";
+  }
+  </script>
 </html>

@@ -1,3 +1,6 @@
+
+
+
 <%= form_with(model: live_feed) do |form| %>
   <% if live_feed.errors.any? %>
     <div style="color: red">
@@ -11,16 +14,17 @@
     </div>
   <% end %>
 
+  <div class="form-cont">
+
   <div class="question-send">
     <%= form.text_field :title,placeholder: "Title",class:"question-title input" %>
-  </div>
-<div>
-  <div>
+
     <%= form.text_area :question_body,placeholder: "Question Body",class:"question-body input" %>
   </div>
 
   <div>
-    <%= form.submit '' , class: 'send' %>
+    <%= form.submit 'Ask' , class:'send' %>
   </div>
   </div>
+
 <% end %>

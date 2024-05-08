@@ -1,0 +1,59 @@
+<%= stylesheet_link_tag "cart" %>
+
+
+
+<h1 class="cart-head">Shopping Cart</h1>
+<div class="shope-cart">
+
+<% if @cart_items.any? %>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Subtotal</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td class="cart-product"> <div><%= image_tag cart_item.product.product_image ,class:"cart-image" %></div> <div class="cart-product-name">  <%= cart_item.product.product_name%> </div> </td>
+          <td>
+            <%= form_tag update_quantity_path(cart_item), method: :patch do %>
+              <%= number_field_tag 'quantity', cart_item.quantity, min: 1 ,class:"cart-input" %>
+              <%= submit_tag 'Update',class:"cart-update" %>
+            <% end %>
+          </td>
+          <td><%= number_to_currency(cart_item.product.price, unit: '₹', precision: 2) %></td>
+          <td><%= number_to_currency(cart_item.product.price * cart_item.quantity , unit: '₹', precision: 2) %></td>
+          <td >
+            <%= link_to 'X', remove_from_cart_path(cart_item),class:"cart-remove", method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td colspan="3"><strong>Total:</strong></td>
+        <td colspan="2"><%= number_to_currency(@cart_items.sum { |item| item.product.price * item.quantity } , unit: '₹', precision: 2) %>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+<% else %>
+  <p>Your cart is empty.</p>
+<% end %>
+</div>
+</div>
+<div class="checkout">
+<%= form_for @order, url: checkout_path do |f| %>
+  <div class="cart-field">
+    <%= f.text_area :address ,placeholder:"Address",class:"cart-address input", required: true %>
+  </div>
+  <%= f.submit 'Checkout', class: 'checkout-btn' %>
+<% end %>
+</div>

@@ -50,3 +50,7 @@ group :test do
 end
 
 gem 'httparty', '~> 0.18.1'
+
+gem 'ransack'
+
+gem 'sassc-rails'

@@ -40,9 +40,8 @@
 }
 .question-body{
     position: relative;
-    width: 98%;
+    width: 84%;
     height: 40px;
-    background-image: url('send.png');
     background-repeat: no-repeat;
     background-position: 75rem center; /* Adjust the position of the icon */
     padding-left: 10px; /* Ensure enough space for the icon */
@@ -60,15 +59,15 @@
     position: relative;
 }
 .send {
-    background-color:transparent;
+    background-color:rgb(25, 23, 23);
     border: none;
     color: #faf7f7; /* Button text color */
     cursor: pointer;
     padding: 10px;
-    padding-left: 22px;
+    top: 5.5rem;
+    right: 8rem;
     position: absolute;
-    right:160px; 
-    top: 42.5rem;/* Position the button at the right end of the input field */
+    border-radius: 10px;
   }
   
 .question-title{
@@ -93,8 +92,12 @@
 .link{
     text-decoration: none;
 }
-
-
+.form-cont{
+    display: flex;
+    justify-content:space-between;
+    position: relative;
+    margin-left: 3rem;
+}
 
 
 
@@ -158,7 +161,6 @@ button{
     align-items: center;
     width: 99vw;
     overflow-y: auto;
-
   }
 
 
@@ -179,15 +181,75 @@ button{
     margin-left: 75rem;
     font-size: small;
   }
-  .question-answer .send{
-    background-color: transparent;
-    top: 69rem;
-    right: 11.5rem;
-  }
+ 
   .question-answer .question-body{
     width: 80rem;
     margin-left: 90px;
   }
-  ans-que{
-    position: relative;
+  .ans-que{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  .answer-q{
+    margin-top: 20px;
+    background-color:rgb(25, 23, 23);
+    border: none;
+    color: #faf7f7; /* Button text color */
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  @media(max-width:320px){
+    .feed-container{
+        margin-top: 5rem;
+        width: 18rem;
+    }
+    #live_feeds{
+        gap: 7px;
+        height: 430px;
+        position: fixed;
+        width: 98vw;
+        overflow-y: auto;
+    }
+    .question{
+        width: 80vw;
+        min-height: 1rem;
+    }
+    .time{
+        color: rgb(100, 97, 97);
+        margin-left: 12.2rem;
+    }
+    .ask_question{
+        margin-right: 80px;
+        margin-top: 27rem;
+    }
+    .send{
+        top: 8.7rem;
+    }
+    .ans-by{
+        margin-left: 4rem;
+        font-size: small;
+      }
+    .ans{
+        margin-left: 60px;
+    }
+    .ans .question{
+        width: 13.5rem;
+      }
+      .question-answer .question-body{
+        width: 13rem;
+        margin-left: 0px;
+      }
+      .question-answer{
+        margin-top: 8rem;
+    }
+    .to-feed{
+        top: 4rem;
+    }
+    #question_feeds .question{
+        width: 15rem;
+        margin-right: 10px;
+    }
   }

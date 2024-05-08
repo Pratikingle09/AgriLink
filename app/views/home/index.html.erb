@@ -1,17 +1,76 @@
 <%= stylesheet_link_tag "home" %>
 
-<div class="home">
-<div class="sub">
-  <%= render "cart", acc_data: @cart1 %>
-<%= link_to alerts_path do %>
+    <div class="body">
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="container">
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Welocome To AgriLink</h1>
+            <p class="lead">AgriLink is a revolutionary platform dedicated to transforming agriculture for a sustainable tomorrow. It serves as a dynamic hub where farmers, students, sellers, and companies converge to foster innovation and growth in the agricultural sector.</p>
+            <p class="lead">
+              <a href="#about" class="btn btn-lg btn-default link">Learn more</a>
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  <h2 class="feature-head">Features</h2>
+
+  <div class="featurs">
+
+   <%= render "cart", acc_data: @cart1 %>
+    <%= link_to alerts_path do %>
   <%= render "cart", acc_data: @cart2 %>
-<% end %>
-  </div>
-  <div class="sub">
+    <% end %>
   <%= render "cart", acc_data: @cart3 %>
   <%= render "cart", acc_data: @cart4 %>
-  </div>
+    </div>
+
+
+    <div class="about" id="about">
+    <h2>About Us:</h2>
+    <p class="about-text">Welcome to AgriLink, your comprehensive platform for revolutionizing the agriculture sector! At AgriLink, we've developed a dynamic ecosystem that connects farmers, agricultural experts, and suppliers to foster growth, innovation, and sustainability in farming practices.
+
+Our journey began with a vision to bridge the gap between technology and agriculture, empowering farmers with digital tools to enhance productivity and profitability. AgriLink is the brainchild of our team at Ackrity Computing, conceived as part of our commitment to driving positive change through technological innovation.</p>
+    
+    <div>
+<h4>Key Features of AgriLink:</h4>
+
+<p><strong>Expert Advice</strong>: Have a question about crop management, pest control, or soil health? Our platform allows users to seek guidance from seasoned agricultural experts, ensuring informed decision-making every step of the way.</p>
+<p><strong>Marketplace</strong>: Looking to buy fertilizers, seeds, or other agricultural inputs? AgriLink offers a convenient marketplace where users can browse a wide range of products, compare prices, and make purchases hassle-free.</p>
+<p><strong>Farmers' Market</strong>: For farmers looking to sell their produce, AgriLink provides a dedicated marketplace where they can showcase their products to a wider audience, facilitating fair trade and equitable market access.</p>
+<p><strong>Community Engagement</strong>: Connect with like-minded individuals, join discussions, and share insights within our vibrant farming community. AgriLink fosters collaboration and knowledge exchange to foster continuous learning and growth.</p>
+<p>Built with Ruby on Rails: Our platform is powered by robust technology, leveraging the flexibility and scalability of Ruby on Rails to deliver a seamless user experience.
+Join us in transforming the agriculture sector one innovation at a time. Whether you're a seasoned farmer, an agricultural enthusiast, or a supplier looking to contribute to sustainable farming practices, AgriLink is your ultimate destination.</p>
+
+Let's cultivate a brighter future for agriculture together!</div>
+
+
+    </div>
+
+    <div class="contact">
+    <h2>Contact Us:</h2>
+
+   <p> Thank you for your interest in AgriLink! We're here to assist you with any inquiries, feedback, or support you may need. Please feel free to reach out to us using the information below:<p>
+  <div class="contact-field"> <p> <strong>Address: At. Post Akot, 444101</strong></p>
+<p><strong>Phone: 9370260424 </strong></p>
+<p><strong>Email: pratikingle66@gmail.com</strong></p>
 </div>
+<p>We value your feedback and strive to provide exceptional service to our community. Your input helps us continually improve AgriLink and deliver meaningful solutions to the agriculture sector.</p>
+
+<p>Thank you for choosing AgriLink. We look forward to hearing from you!</p>
+    </div>
+    </div>
+
+
+
 
 
 

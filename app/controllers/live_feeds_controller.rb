@@ -25,8 +25,8 @@ class LiveFeedsController < ApplicationController
   # POST /live_feeds or /live_feeds.json
   def create
     @live_feed = LiveFeed.new(live_feed_params)
-    @live_feed.asked_by = current_user.id if user_signed_in?
-    @live_feed.user_id = current_user.id if user_signed_in?
+    @live_feed.asked_by = current_user.id
+    @live_feed.user_id = current_user.id
 
 
     respond_to do |format|
@@ -55,21 +55,15 @@ class LiveFeedsController < ApplicationController
 
   # DELETE /live_feeds/1 or /live_feeds/1.json
   def destroy
-    begin
       @live_feed.destroy!
       redirect_to live_feeds_url
-    rescue ActiveRecord::RecordNotDestroyed => e
-      redirect_to live_feeds_url, alert: "Failed to destroy live feed: #{e.message}"
-    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_live_feed
       @live_feed = LiveFeed.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def live_feed_params
       params.require(:live_feed).permit(:title, :question_body, :asked_by)
     end

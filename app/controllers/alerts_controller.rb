@@ -1,5 +1,5 @@
 class AlertsController < ApplicationController
-  before_action :set_alert, only: %i[ show edit update destroy ]
+  before_action :set_alert, only: %i[ destroy ]
 
   # GET /alerts or /alerts.json
   def index
@@ -24,7 +24,7 @@ class AlertsController < ApplicationController
   # POST /alerts or /alerts.json
   def create
     @alert = Alert.new(alert_params)
-    @alert.user_id = current_user.id if user_signed_in?
+    @alert.user_id = current_user.id
 
     respond_to do |format|
       if @alert.save
@@ -53,7 +53,6 @@ class AlertsController < ApplicationController
   # DELETE /alerts/1 or /alerts/1.json
   def destroy
     @alert.destroy!
-
     respond_to do |format|
       format.html { redirect_to alerts_url, notice: "Alert was successfully destroyed." }
       format.json { head :no_content }
@@ -61,12 +60,10 @@ class AlertsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_alert
       @alert = Alert.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def alert_params
       params.require(:alert).permit(:alert, :title)
     end

@@ -1,7 +1,7 @@
   <%= link_to "Back", live_feeds_path , class:"to-feed" %>
 
 <div class="question-answer">
-<p style="color: green"><%= notice %></p>
+<p style="color: green" class="toast"><%= notice %></p>
 
    <div class="question">
 <%if current_user.id == @live_feed.asked_by%>
@@ -36,15 +36,17 @@
 
 
 
-<div class="ans-que"></div>
+
 <%= form_with(model: [@live_feed, @answer]) do |form| %>
+<div class="ans-que">
   <p>
     <%= form.text_area :answer_body ,placeholder: "Answer the Question",class:"question-body input" %>
   </p>
   <p>
-    <%= form.submit "",class: 'send' %>
+    <%= form.submit "Answer", class:"answer-q" %>
   </p>
+ </div>
+
 <% end %>
- 
 
 </div>
