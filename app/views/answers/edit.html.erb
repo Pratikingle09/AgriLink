@@ -1,0 +1,12 @@
+<%= form_for [@live_feed, @answer] do |f| %>
+
+<div class="ans-que edit-ans">
+  <p>
+    <%= f.text_area :answer_body ,placeholder: "Answer the Question",class:"question-body ans-body input" %>
+  </p>
+  <p>
+    <%= f.submit "edit", class:"answer-q  ans-edit-submit" %>
+  </p>
+ </div>
+
+<% end %>

@@ -3,6 +3,24 @@ class AnswersController < ApplicationController
     @live_feed = LiveFeed.new
   end
 
+  def edit
+    @live_feed = LiveFeed.find(params[:live_feed_id])
+    @answer = @live_feed.answers.find(params[:id])
+  end
+
+
+  def update
+    @live_feed = LiveFeed.find(params[:live_feed_id])
+    @answer = @live_feed.answers.find(params[:id])
+    
+    if @answer.update(answer_params)
+      redirect_to live_feed_path(@live_feed)
+    else
+      render :edit
+    end
+  end
+
+
   def create
     @live_feed = LiveFeed.find(params[:live_feed_id])
     @user = @live_feed.user
@@ -10,7 +28,6 @@ class AnswersController < ApplicationController
     @answer.user = current_user if user_signed_in?
     @answer.asked_by = current_user.username
     if @answer.save
-      @user.alerts.create(title: "#{current_user.username} answered your question posted on #{@live_feed.created_at.strftime("%d %b")}.",alert:"#{answer_params[:answer_body]}")
       redirect_to live_feed_path(@live_feed)
     else
       render :new

@@ -4,4 +4,6 @@ class LiveFeed < ApplicationRecord
     
     validates :title, presence: true
     validates :question_body, presence: true, length: { minimum: 10 }
+
+    after_create_commit { broadcast_prepend_to 'live_feed_channel', target: 'live_feeds' }
 end

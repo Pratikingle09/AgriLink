@@ -25,16 +25,14 @@ class CartsController < ApplicationController
     def checkout
      @cart_items = current_user.carts.includes(product: :user)
       @order = current_user.orders.build(order_params)
-      
-
       @cart_items.each do |cart_item|
         seller = cart_item.product.user
-        order_item = @order.order_items.build(product_id: cart_item.product.id, quantity: cart_item.quantity)
-        order_item.seller_id = seller.id
+        @order_item = @order.order_items.build(product_id: cart_item.product.id, quantity: cart_item.quantity)
+        @order_item.seller_id = seller.id
       end
-
       @order.mobile = current_user.mobile
       if @order.save
+        OrderNotificationMailer.checkout_notification(@order).deliver_now
         clear_cart_items
         redirect_to root_path
       else

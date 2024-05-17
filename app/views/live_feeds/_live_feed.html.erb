@@ -1,17 +1,7 @@
-<div id="<%= dom_id live_feed %>">
-  <p>
-    <strong>Title:</strong>
-    <%= live_feed.title %>
-  </p>
-
-  <p>
-    <strong>Question body:</strong>
-    <%= live_feed.question_body %>
-  </p>
-
-  <p>
-    <strong>Asked by:</strong>
-    <%= live_feed.asked_by %>
-  </p>
-
-</div>
+<%= link_to live_feed, class: 'link' do %>
+  <div class="question" id="live_feed_<%= live_feed.id %>">
+    <p class='q-title'><%= live_feed.title %></p>
+    <p class='q-body'><%= live_feed.question_body %></p>
+    <p class="time"><%= live_feed.created_at.strftime('%d %b') %></p>
+  </div>
+<% end %>

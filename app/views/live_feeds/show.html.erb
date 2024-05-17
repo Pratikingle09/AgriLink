@@ -30,6 +30,7 @@
     on 
     <strong><%= ans.created_at.strftime("%d %b")%></strong>
   </p>
+  <%= link_to "edit", edit_live_feed_answer_path(@live_feed,ans) %>
   </div>
 <% end %>
 </div>

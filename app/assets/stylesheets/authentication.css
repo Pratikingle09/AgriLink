@@ -23,6 +23,7 @@
     padding-top: 150px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 h1 {
@@ -102,6 +103,11 @@ select {
 .remind{
     color: #0d2507;
 }
+.reset{
+    position: absolute;
+    top: 32rem;
+    right: 6.5rem;
+}
 
 @media (max-width: 320px){
 
@@ -115,5 +121,8 @@ select {
     }
     select{
         margin-left: 30px;
+    }
+    .reset{
+        top: 34rem;
     }
 }

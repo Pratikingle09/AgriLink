@@ -31,7 +31,7 @@ class LiveFeedsController < ApplicationController
 
     respond_to do |format|
       if @live_feed.save
-        format.html { redirect_to live_feed_url(@live_feed), notice: "Live feed was successfully created." }
+        format.html { redirect_to live_feeds_url, notice: "Live feed was successfully created." }
         format.json { render :show, status: :created, location: @live_feed }
       else
         format.html { render :new, status: :unprocessable_entity }

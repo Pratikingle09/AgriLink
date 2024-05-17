@@ -1,120 +1,110 @@
-.shop-cart{
+.shop-cart {
     display: flex;
     justify-content: space-between;
 }
 
-.cart-head{
-    margin-top: 6rem;
-    margin-left: 35%;
+.cart-head {
+    margin-top: 10rem; 
+    text-align: center;
 }
-.cart-image{
-    width: 50px;
+
+.cart-image {
+    width: 40px;
     height: 50px;
 }
-table{
-    border-spacing: 100px;
+
+table {
+    width: 100%;
+    border-collapse: collapse; 
 }
-.cart-input{
-    width: 30px;
-    height: max-content;
-    border: solid 2px black;
-    border-radius: 6px;
+
+th, td {
+    padding: 8px; 
+    text-align: center; 
+    border-bottom: 1px solid #ddd;
 }
-.cart-product{
+
+.cart-input {
+    width: 50px;
+    padding: 6px;
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+.cart-product {
+    justify-content: center;
     display: flex;
-    gap: 5px;
-    font-size: large;
-    font-weight: 500;
+    align-items: center;
 }
-.cart-product-name{
-    margin-top: 15px;
+
+.cart-product-name {
+    margin-left: 0px;
+    font-weight: bold;
 }
-.cart-remove{
+
+.cart-remove {
     color: rgb(220, 22, 22);
     text-decoration: none;
-    font-weight: 400;
-    margin-left: 10px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
 }
-.cart-items-scroll {
-    max-height: 300px; /* Adjust this value as needed */
-    overflow-y: auto;
-  }
-.checkout{
-    position: absolute;
-    top: 15rem;
-    right: 10rem;
+.cart-remove:hover{
+    color: red;
+    text-decoration: underline;
+
 }
-.cart-address{
-    max-width: 20rem;
+
+.checkout {
+    margin-top: 2rem;
 }
-.cart-field{
-    display: flex;
-    flex-direction: column;
+
+.cart-address {
+    width: 100%; 
+    max-width: 600px;
+    height: 100px;
+    margin-left: 30%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
-.checkout-btn{
-    background-color: transparent;
-    padding: 10px 20px;
-    border-radius: 10px;
+
+.checkout-btn {
+    width: 10%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 45%;
+    border: none;
+    border-radius: 4px;
+    background-color: #1679AB;
+    color: white;
     cursor: pointer;
 }
-.checkout-btn:hover{
-    background-color: black;
-    color: white;
+
+.checkout-btn:hover {
+    background-color: #333; /* Darken the background color on hover */
 }
 
-
-@media(max-width:320px)
-{
-    table{
-        margin-top: 30px;
-        border-spacing: 5px;
-        margin-left: 0px;
+@media(max-width:320px){
+    .cart-address {
+        margin-left: 0%;
     }
-    .cart{
-        align-items: center;
+    .checkout-btn {
+        display: block;
+        width: 40%;
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: rgb(40, 38, 38);
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 5.5rem;
     }
-    .cart-field{
-        bottom: 10px;
-    }
-    .checkout{
-        left: 1.5rem;
-    }
-    .checkout-btn{
-        margin-left: 90px;
-    }
-    .cart-address{
-       margin-top: 20rem;
-        width: 200px;
-    }
-    th{
-        font-size: small;
-    }
-    .cart-product{
-        width: 5rem;       
-        justify-content: center;
-        line-height: 0.1em;
-    }
-    .cart-image{
-        width: 2rem;
-        height: 2rem;
-    }
-    .cart-product-name{
-        font-size: smaller;
-    }
-    .cart-head{
-        font-size: large;
-       margin-top: 70px;
-       margin-left: 90px;
-    }
-    .cart-input{
-        width: 10px;
-        margin-left: 15px;
-    }
-    .cart-update{
-        width: 50px;
-        height: 20px;
-        font-size: x-small;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    th, td {
+        padding: 0px; 
+        text-align: center; 
+        border-bottom: 1px solid #ddd;
     }
 }

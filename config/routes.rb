@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Notifications::Engine => "/notifications"
 
 
   get 'seller_dashboard/index'
@@ -18,7 +19,6 @@ Rails.application.routes.draw do
   resources :live_feeds do
     resources :answers
   end
-  resources :alerts, only: [:index , :create , :destroy]
   get 'my_questions/question'
   root to: "home#index"
 

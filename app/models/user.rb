@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_many :alerts
   has_many :live_feeds
   has_many :products , dependent: :destroy
   has_many :carts

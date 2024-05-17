@@ -25,7 +25,7 @@
 .product-card{
     width: 15rem;
     height: 18rem;
-    background-color: rgb(221, 242, 242);
+    background-color: #1679AB;
     border: 2px solid;
     border-radius: 10px;
     padding: 10px;
@@ -38,14 +38,14 @@
     height: 13rem;
 }
 .product-name{
-    padding-left: 20px;
-    color: black;
+    padding-left: 80px;
+    color: rgb(249, 247, 247);
     font-size: larger;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .product-price{
-    padding-left: 20px;
-    color: black;
+    padding-left: 80px;
+    color: rgb(243, 242, 242);
 }
 
 
@@ -118,7 +118,7 @@
     font-weight: bold;
 }
 .add-to-cart {
-    background: black;
+    background: #111111;
     padding: 1.2em 1.5em;
     border: none;
     text-transform: UPPERCASE;
@@ -127,8 +127,8 @@
     -webkit-transition: background .3s ease;
             transition: background .3s ease; }
     .add-to-cart:hover, .like:hover {
-      background: #b36800;
-      color: #fff; }
+      background: #C5FF95;
+      color: #0a0a0a; }
   
 .show-description{
     flex-wrap: wrap;
@@ -141,7 +141,11 @@
     width: 30px;
     height: 30px;
 }
-
+@media(min-width:320px){
+    .show{
+        margin-top: 10rem;
+    }
+}
 @media(max-width:320px){
     .show-product{
         padding-top: 5rem;
@@ -159,8 +163,6 @@
 
 }
 @media(max-width:320px){
-    .store{
-    }
     .search{
         top: 90px;
         left: 0;
@@ -186,6 +188,12 @@
     }
     .product-price{
         padding-top: 0px;
+    }
+    .product-name{
+        padding-left: 20px;
+    }
+    .product-price{
+        padding-left: 30px;
     }
 
 

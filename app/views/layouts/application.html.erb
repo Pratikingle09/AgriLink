@@ -6,7 +6,23 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%
+=begin%>
+ <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
+<%
+=end%>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+
+
+
+    <%
+=begin%>
+ <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>    
+<%
+=end%>
+
+
+
     <%= javascript_importmap_tags %>
   </head>
 
@@ -19,44 +35,48 @@
 
 
 <div class="nav-cont">
-<%= link_to 'Home', root_path, class: "nav-item #{'active' if current_page?(root_path)}" %>
+<%= link_to 'Home', main_app.root_path, class: "nav-item #{'active' if current_page?(main_app.root_path)}" %>
 
   <% if current_user.account_type=="student"%>
-  <%= link_to 'Learning', learning_index_path ,class: "nav-item #{'active' if current_page?(learning_index_path)}" %>
+  <%= link_to "Learning", main_app.learning_index_path ,class: "nav-item #{'active' if current_page?(main_app.learning_index_path)}" %>
   <%end%>
   <% if current_user.account_type!="student"%>
-  <%= link_to 'Dashboard', seller_dashboard_index_path ,class: "nav-item #{'active' if current_page?(seller_dashboard_index_path)}"%>
+  <%= link_to 'Dashboard', main_app.seller_dashboard_index_path ,class: "nav-item #{'active' if current_page?(main_app.seller_dashboard_index_path)}"%>
   <%end%>
   <% if current_user.account_type!="seller"%>
-  <%= link_to 'Questions', my_questions_question_path ,class: "nav-item #{'active' if current_page?(my_questions_question_path)}"%>
+  <%= link_to "Questions", main_app.my_questions_question_path ,class: "nav-item #{'active' if current_page?(main_app.my_questions_question_path)}"%>
   <%end%>
-  <%= link_to 'Shop', products_path ,class: "nav-item #{'active' if current_page?(products_path)}"%>
-  <%= link_to 'Feed',  live_feeds_path ,class: "nav-item #{'active' if current_page?(live_feeds_path)}"%>
-  <%= link_to 'Notifications', alerts_path ,class: "nav-item #{'active' if current_page?(alerts_path)}" %>
+  <%= link_to 'Shop', main_app.products_path ,class: "nav-item #{'active' if current_page?(main_app.products_path)}"%>
+  <%= link_to 'Feed', main_app.live_feeds_path ,class: "nav-item #{'active' if current_page?(main_app.live_feeds_path)}"%>
+  <%= link_to "Notifications:#{Notification.unread_count(current_user)}", notifications_path ,class: "nav-item #{'active' if current_page?(notifications_path)}" %>
 
 <div class="mobile-container" id="menu" style="display:none;" >
 <div class="mobile-nav">
-<%= link_to 'Home', root_path, class: "mobile-nav-item #{'active' if current_page?(root_path)}" %>
+<%= link_to 'Home', main_app.root_path, class: "mobile-nav-item #{'active' if current_page?(main_app.root_path)}" %>
 
   <% if current_user.account_type=="student"%>
-  <%= link_to 'Learning', learning_index_path ,class: "mobile-nav-item #{'active' if current_page?(learning_index_path)}" %>
+  <%= link_to 'Learning', main_app.learning_index_path ,class: "mobile-nav-item #{'active' if current_page?(main_app.learning_index_path)}" %>
   <%end%>
   <% if current_user.account_type!="student"%>
-  <%= link_to 'Dashboard', seller_dashboard_index_path ,class: "mobile-nav-item #{'active' if current_page?(seller_dashboard_index_path)}"%>
+  <%= link_to 'Dashboard', main_app.seller_dashboard_index_path ,class: "mobile-nav-item #{'active' if current_page?(main_app.seller_dashboard_index_path)}"%>
   <%end%>
   <% if current_user.account_type!="seller"%>
-  <%= link_to 'Questions', my_questions_question_path ,class: "mobile-nav-item #{'active' if current_page?(my_questions_question_path)}"%>
+  <%= link_to 'Questions', main_app.my_questions_question_path ,class: "mobile-nav-item #{'active' if current_page?(main_app.my_questions_question_path)}"%>
   <%end%>
-  <%= link_to 'Shop', products_path ,class: "mobile-nav-item #{'active' if current_page?(products_path)}"%>
-  <%= link_to 'Feed',  live_feeds_path ,class: "mobile-nav-item #{'active' if current_page?(live_feeds_path)}"%>
-  <%= link_to 'Notifications', alerts_path ,class: "mobile-nav-item #{'active' if current_page?(alerts_path)}" %>
+  <%= link_to 'Shop', main_app.products_path ,class: "mobile-nav-item #{'active' if current_page?(main_app.products_path)}"%>
+  <%= link_to 'Feed',  main_app.live_feeds_path ,class: "mobile-nav-item #{'active' if current_page?(main_app.live_feeds_path)}"%>
+  <%= link_to pluralize(Notification.unread_count(current_user) , 'Notification'), notifications_path ,class: "mobile-nav-item #{'active' if current_page?(notifications_path)}" %>
+  
 </div>
 </div>
 
 
 </div>
     <div class="sub-nav">
-  <%= link_to image_tag("shopping-cart.png",class:"nav-cart"), carts_path ,class: "nav-item #{'active' if current_page?(carts_path)}" %>
+<span class="cart-count nav-item" style="right: <%= current_user.account_type == 'seller' ? '15rem' : '11.5rem' %>;">
+  <%= @cart_count %>
+</span>
+  <%= link_to image_tag("shopping-cart.png",class:"nav-cart"), main_app.carts_path ,class: "nav-item" %>
     <% if current_user.account_type == "student" %>
     <%= image_tag("Student.png", alt: "profile icon",class:"profile") %>
     <%end%>
@@ -68,8 +88,7 @@
     <% if current_user.account_type == "seller" %>
     <%= image_tag("seller.png", alt: "profile icon",class:"profile") %>
     <%end%>
-
-    <%= button_to "Logout", destroy_user_session_path,class:"button", method: :delete %>
+    <%= button_to "Logout", main_app.destroy_user_session_path,class:"button", method: :delete %>
     </div>
   </nav>
   <% end %>
