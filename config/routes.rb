@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  get 'error/index'
+  get 'profile/profile'
+  post 'profile_update', to: 'profile#profile_update', as: :profile_update
+
+
   mount Notifications::Engine => "/notifications"
 
 
   get 'seller_dashboard/index'
-  get 'seller_dashboard/products'
   get 'seller_dashboard/orders'
   
   resources :carts, only: [:index]
@@ -13,7 +17,10 @@ Rails.application.routes.draw do
   post 'checkout', to: 'carts#checkout', as: 'checkout'
 
 
-  resources :products
+  resources :products do
+    post 'review', on: :member, to: 'products#create_review'
+  end
+
   get 'my_question/index'
   get 'learning/index'
   resources :live_feeds do

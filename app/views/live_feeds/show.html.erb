@@ -1,3 +1,47 @@
+ 
+<style>
+.pro_image{
+  margin-top:10px;
+  width:40px;
+  height:40px
+}
+.profile-info-post{
+  display:flex;
+  gap:10px;
+}
+.post-user-info{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+}
+.post-file{
+  width:98%;
+  height:45rem;
+  padding-bottom:20px;
+}
+.like{
+  position:absolute;
+  bottom:10px;
+  left:20px;
+  background-color:transperent;
+}
+.question{
+      position: relative;
+    background-color: #1679AB;
+    width: 90vw;
+    min-height: 2rem;
+    height: auto;
+    border-radius: 5px;
+    padding-left: 20px;
+    text-decoration: none;
+    border: 1px solid;
+    color: #f7f5f5;
+  max-height:80rem;
+}
+</style>
+ 
+ 
   <%= link_to "Back", live_feeds_path , class:"to-feed" %>
 
 <div class="question-answer">
@@ -10,8 +54,23 @@
   <%= button_to image_tag('delete.png',class:"edit"), @live_feed,method: :delete %>
 </div>
   <%end%>
-   <p class='q-title'> <%= @live_feed.title %></p>
-   <p class='q-body'> <%= @live_feed.question_body %></p>
+  <div class="profile-info-post">
+  <div>
+  <% if @live_feed.user.profile_image&.image&.attached? %>
+       <%= image_tag(@live_feed.user.profile_image.image, class:"pro_image p-i")%>
+  <% else%>
+       <%= image_tag "user.png" , class:"pro_image"%>
+    <% end %>
+       </div>
+       <div class="post-user-info" >
+       <p><%= @live_feed.user.username%> </p>|
+       <p><%= @live_feed.user.account_type%> </p>
+       </div>
+       </div>
+           <p class='q-body'><%= @live_feed.question_body %></p>
+           <% if @live_feed.post_image.attached? %>
+  <%= image_tag(@live_feed.post_image, class:"post-file") %>
+<% end %>
    <p class="time"> <%= @live_feed.created_at.strftime('%d %b') %></p>
     </div>
 

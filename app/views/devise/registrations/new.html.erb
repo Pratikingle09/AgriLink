@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag "authentication" %>
+<style>
 
+</style>
 <div class ="authorisation-container">
 <div class ="register-container">
 <h1>Create an account</h1>
@@ -16,15 +18,15 @@
   </div>
 
   <div class="field">
-  <%= f.text_field :mobile,placeholder: "Mobile",class:"input" %>
+  <%= f.phone_field :mobile,placeholder: "Mobile" , value:"+91",class:"input" %>
   </div>
 
 
   <div class="field">
-    <% if @minimum_password_length %>
+    <%= f.password_field :password,placeholder: "Password",class:"input", autocomplete: "new-password" %><br />
+        <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password,placeholder: "Password",class:"input", autocomplete: "new-password" %>
+    <% end %>
   </div>
 
   <div class="field">

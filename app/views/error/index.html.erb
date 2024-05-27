@@ -1,0 +1,66 @@
+<style>/* Reset some default browser styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Center the content in the middle of the page */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  background-color: #f2f2f2;
+}
+
+.error-title {
+  font-size: 3rem;
+  margin: 0;
+  color: #ff6b6b;
+}
+
+.error-message {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  color: #555;
+}
+
+.login-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Denied</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="error-container">
+    <h1 class="error-title">Access Denied</h1>
+    <p class="error-message">You need to be logged in to view this page.</p>
+     <%= link_to "Log In", new_user_session_path,class:"login-button" %>
+  </div>
+</body>
+</html>

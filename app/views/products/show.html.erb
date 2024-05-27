@@ -1,3 +1,29 @@
+
+<style>
+.comments-show{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:10px;
+  margin-top:50px;
+}
+.comments-show p{
+  background-color:white;
+  width:80%;
+  height:50px;
+  border-radius:10px;
+  text-align: center;
+  line-height:1.9em;
+    box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+    font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+</style>
+
+
+
+
 <p class="toast" style="color: green"><%= notice %></p>
 <div class="show">
   <%= link_to "Back", products_path,class:"back show-back" %>
@@ -18,10 +44,20 @@
 <div class="show-text">
 <h1 class="show-name"><%= @product.product_name%></h1>
 <p class="show-description"><%= @product.product_description%></p>
+<div>seller: <%= @product.user.username%> | <%= @product.user.email%>    </div>
 <h4 class="show-price">Price: Rs <%= @product.price%></h4>
 <div class="add-to-cart"><%= link_to 'Add to Cart', add_to_cart_path(product_id: @product.id), method: :post %></div>
 </div>
 
 </div>
 </div>
+
+<div class="comments-show ans-que">
+  <% @reviews.each do |review| %>
+ <p> <%= review.comment %> </p>
+  <% end %>
+</div>
+
+<%= render "review" %>
+
 

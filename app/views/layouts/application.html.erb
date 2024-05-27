@@ -5,33 +5,47 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <%
-=begin%>
- <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
-<%
-=end%>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-
-
-
-    <%
-=begin%>
- <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>    
-<%
-=end%>
-
-
-
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_pack_tag "application" %>
     <%= javascript_importmap_tags %>
+
+    <style>
+    .notification-count{
+      color:red;
+      margin-left:3px;
+    }
+    .logo1{
+      width:100px;
+      height:60px;
+          margin-left: 150px;
+    padding-top: 30px;
+    }
+    .profile-items{
+     display: flex;
+    flex-direction: column;
+    }
+    #profile-option{
+      right:70px;
+      top:5rem;
+    background-color: white;
+    position: absolute;
+    }
+    .p-i{
+      border-radius:50px;
+    }
+
+    </style>
   </head>
 
   <body>
   <%if user_signed_in?%>
   <nav class="nav">
-    <%= image_tag("Logo.png", alt: "logo",class:"logo") %>
-
-   <button class="menu" id="menu-btn" ><%= image_tag("more.png", alt: "hamburger-menu",class:"ham") %></button> 
+  <%= link_to main_app.root_path do %>
+    <%= image_tag("Logo.png", alt: "logo",class:"logo1") %>
+    <% end %>
+   <button class="menu" id="menu-btn" onclick="menuFunction()" ><%= image_tag("more.png", alt: "hamburger-menu",class:"ham") %></button> 
 
 
 <div class="nav-cont">
@@ -43,12 +57,11 @@
   <% if current_user.account_type!="student"%>
   <%= link_to 'Dashboard', main_app.seller_dashboard_index_path ,class: "nav-item #{'active' if current_page?(main_app.seller_dashboard_index_path)}"%>
   <%end%>
-  <% if current_user.account_type!="seller"%>
-  <%= link_to "Questions", main_app.my_questions_question_path ,class: "nav-item #{'active' if current_page?(main_app.my_questions_question_path)}"%>
-  <%end%>
   <%= link_to 'Shop', main_app.products_path ,class: "nav-item #{'active' if current_page?(main_app.products_path)}"%>
   <%= link_to 'Feed', main_app.live_feeds_path ,class: "nav-item #{'active' if current_page?(main_app.live_feeds_path)}"%>
-  <%= link_to "Notifications:#{Notification.unread_count(current_user)}", notifications_path ,class: "nav-item #{'active' if current_page?(notifications_path)}" %>
+  <%= link_to notifications_path, class: "nav-item #{'active' if current_page?(notifications_path)}" do %>
+  Notifications<span class="notification-count"><%= Notification.unread_count(current_user) %></span>
+<% end %>
 
 <div class="mobile-container" id="menu" style="display:none;" >
 <div class="mobile-nav">
@@ -65,7 +78,9 @@
   <%end%>
   <%= link_to 'Shop', main_app.products_path ,class: "mobile-nav-item #{'active' if current_page?(main_app.products_path)}"%>
   <%= link_to 'Feed',  main_app.live_feeds_path ,class: "mobile-nav-item #{'active' if current_page?(main_app.live_feeds_path)}"%>
-  <%= link_to pluralize(Notification.unread_count(current_user) , 'Notification'), notifications_path ,class: "mobile-nav-item #{'active' if current_page?(notifications_path)}" %>
+  <%= link_to notifications_path, class: "nav-item #{'active' if current_page?(notifications_path)}" do %>
+  Notifications<span class="notification-count"><%= Notification.unread_count(current_user) %></span>
+<% end %>
   
 </div>
 </div>
@@ -73,10 +88,15 @@
 
 </div>
     <div class="sub-nav">
-<span class="cart-count nav-item" style="right: <%= current_user.account_type == 'seller' ? '15rem' : '11.5rem' %>;">
+<span class="cart-count nav-item" style="right:9.6rem">
   <%= @cart_count %>
 </span>
   <%= link_to image_tag("shopping-cart.png",class:"nav-cart"), main_app.carts_path ,class: "nav-item" %>
+
+<div id="profile-btn" onclick="profileFunction()" style="cursor:pointer">
+<% if current_user.profile_image&.image&.attached? %>
+  <%= image_tag main_app.rails_blob_path(current_user.profile_image.image), class:"profile p-i" %>
+<% else %>
     <% if current_user.account_type == "student" %>
     <%= image_tag("Student.png", alt: "profile icon",class:"profile") %>
     <%end%>
@@ -85,9 +105,20 @@
     <%= image_tag("farmer.png", alt: "profile icon",class:"profile") %>
     <%end%>
 
+
     <% if current_user.account_type == "seller" %>
     <%= image_tag("seller.png", alt: "profile icon",class:"profile") %>
     <%end%>
+
+<%end%>
+</div>
+<div id="profile-option" style="display:none; " >
+<div class="profile-items">
+<%= link_to 'Profile', main_app.profile_profile_path, class: "mobile-nav-item #{'active' if current_page?(main_app.root_path)}" %>
+<%= link_to 'My Activities', main_app.my_questions_question_path , class: "mobile-nav-item #{'active' if current_page?(main_app.root_path)}" %>
+</div>
+</div>
+
     <%= button_to "Logout", main_app.destroy_user_session_path,class:"button", method: :delete %>
     </div>
   </nav>
@@ -100,11 +131,19 @@
 
   <script>
 
-document.getElementById("menu-btn").addEventListener("click",menuFunction);
+
+
 
   function menuFunction(){
     let display = document.getElementById("menu").style.display
     display=="none"?document.getElementById("menu").style.display= 'block':document.getElementById("menu").style.display="none";
   }
+    function profileFunction(){
+    let display = document.getElementById("profile-option").style.display
+    display=="none"?document.getElementById("profile-option").style.display= 'block':document.getElementById("profile-option").style.display="none";
+  }
+
+  
+
   </script>
 </html>

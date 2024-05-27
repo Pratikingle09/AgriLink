@@ -1,10 +1,14 @@
 class LiveFeedsController < ApplicationController
-  before_action :set_live_feed, only: %i[ show edit update destroy ]
+  before_action :set_live_feed, only: %i[ show edit update destroy]
 
   # GET /live_feeds or /live_feeds.json
   def index
+    if user_signed_in?
     @live_feeds = LiveFeed.all
     @live_feed = LiveFeed.new
+  else 
+    redirect_to main_app.error_index_path
+  end
   end
 
   # GET /live_feeds/1 or /live_feeds/1.json
@@ -59,12 +63,18 @@ class LiveFeedsController < ApplicationController
       redirect_to live_feeds_url
   end
 
+
+
+
+
+
+
   private
     def set_live_feed
       @live_feed = LiveFeed.find(params[:id])
     end
 
     def live_feed_params
-      params.require(:live_feed).permit(:title, :question_body, :asked_by)
+      params.require(:live_feed).permit(:post_image, :question_body, :asked_by)
     end
 end

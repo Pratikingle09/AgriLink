@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_14_094839) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_27_094249) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -69,8 +69,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_14_094839) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "like_id"
+    t.integer "live_feed_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["live_feed_id"], name: "index_likes_on_live_feed_id"
+  end
+
   create_table "live_feeds", force: :cascade do |t|
-    t.string "title"
+    t.string "post_image"
     t.text "question_body"
     t.integer "asked_by"
     t.datetime "created_at", null: false
@@ -128,6 +136,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_14_094839) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
+  create_table "profile_images", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profile_images_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "comment"
+    t.integer "user_id", null: false
+    t.integer "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_reviews_on_product_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -150,9 +176,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_14_094839) do
   add_foreign_key "answers", "users"
   add_foreign_key "carts", "products"
   add_foreign_key "carts", "users"
+  add_foreign_key "likes", "live_feeds"
   add_foreign_key "live_feeds", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "users"
+  add_foreign_key "profile_images", "users"
+  add_foreign_key "reviews", "products"
+  add_foreign_key "reviews", "users"
 end

@@ -1,0 +1,154 @@
+<style>
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 50px auto;
+    margin-top:7.8rem;
+    padding: 20px;
+    max-width: 800px;
+    background-color:#1679AB;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow:hidden;
+}
+
+.edit-profile {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.edit-p {
+  position:absolute;
+  top:0;
+  right:0rem;
+    width: 30px;
+    height: 30px;
+}
+
+.profile-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position:relative;
+}
+
+.profile-image {
+    margin-bottom: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    background-color: rgb(160, 231, 160);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.profile-info h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.profile-info p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+.actions input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 6px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.actions input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.profile-info p:last-child {
+    margin-bottom: 0;
+}
+.i-f{
+  width:12rem;
+}
+</style>
+
+
+
+
+
+<div class="profile-page">
+<div class="edit-profile">
+
+</div>
+<div class="profile-data">
+<%= link_to edit_user_registration_path do %>
+<%= image_tag("edit.png",class:"edit-p") %>
+<%end%>
+<div class="profile-image">
+<% if @user.profile_image&.image&.attached? %>
+  <%= image_tag @user.profile_image.image, class: 'product_image' %>
+<% else %>
+<% if @user.account_type == 'farmer'%>
+  <%= image_tag("farmer.png", class: 'product_image') %>
+  <% end %>
+<% if @user.account_type == 'student'%>
+  <%= image_tag("Student.png", class: 'product_image') %>
+  <% end %>
+<% if @user.account_type == 'seller'%>
+  <%= image_tag("seller.png", class: 'product_image') %>
+  <% end %>
+<% end %>
+</div>
+<div class="update-profile">
+<%= form_with(model: @profile_image, url: profile_update_path, local: true, html: { multipart: true }) do |form| %>
+  <div class="field">
+    <%= form.file_field :image, class:"input i-f"%>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit "Add Profile Image" %>
+  </div>
+<% end %>
+</div>
+<div class="profile-info">
+<h3>Username</h3>
+<p><%= @user.username%></p>
+<h3>Email address</h3>
+<p><%= @user.email%></p>
+
+<h3>Phone Number</h3>
+<p><%= @user.mobile%></p>
+
+<h3>Account Type</h3>
+<p><%= @user.account_type%></p>
+
+</div>
+
+</div>
+</div>
+

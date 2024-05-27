@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "home" %>
 
-    <div class="body">
+    <div class="body" style="top:0; position:absolute;">
     <div class="site-wrapper">
 
       <div class="site-wrapper-inner">
@@ -11,7 +11,7 @@
             <h1 class="cover-heading">Welocome To AgriLink</h1>
             <p class="lead">AgriLink is a revolutionary platform dedicated to transforming agriculture for a sustainable tomorrow. It serves as a dynamic hub where farmers, students, sellers, and companies converge to foster innovation and growth in the agricultural sector.</p>
             <p class="lead">
-              <a href="#about" class="btn btn-lg btn-default link">Learn more</a>
+              <a href="#about" class="btn btn-lg btn-default link">Learn more</a> <% if !user_signed_in?%> <%= link_to "Register", new_user_registration_path,class:"btn btn-lg btn-default link" %> <% end %>
             </p>
           </div>
 
@@ -25,12 +25,17 @@
 
   <div class="featurs">
 
-   <%= render "cart", acc_data: @cart1 %>
     <%= link_to notifications_path do %>
   <%= render "cart", acc_data: @cart2 %>
     <% end %>
+    <%= link_to  live_feeds_path do %>
   <%= render "cart", acc_data: @cart3 %>
+    <% end %>
+
+    <%= link_to products_path do %>
   <%= render "cart", acc_data: @cart4 %>
+    <% end %>
+
     </div>
 
 
