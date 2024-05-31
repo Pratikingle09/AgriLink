@@ -1,3 +1,4 @@
+    <div class="body" style="top:0; position:absolute;">
 
 <h1 class="cart-head">Orders for Your Products</h1>
 
@@ -9,6 +10,7 @@
       <th>User Mobile</th>
       <th>Shipping Address</th>
       <th>Order Items</th>
+      <th>Ordered on</th>
     </tr>
   </thead>
   <tbody>
@@ -20,12 +22,13 @@
         <td>
           <ul>
             <% order.order_items.each do |item| %>
-              <li>
+              <p>
                 <%= item.product.product_name %> - Quantity: <%= item.quantity %>
-              </li>
+              </p>
             <% end %>
           </ul>
         </td>
+        <td><%= order.created_at.strftime('%d %b %Y') %></td>
       </tr>
     <% end %>
   </tbody>
@@ -33,5 +36,6 @@
 <% else %>
   <p>No orders found.</p>
 <% end %>
+</div>
 
 

@@ -1,0 +1,51 @@
+
+
+<% if @average_rating >0 && @average_rating <2 %>
+<div class="rating-star">
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate"></span>
+<span class="fa fa-star rate"></span>
+<span class="fa fa-star rate"></span>
+<span class="fa fa-star rate"></span>
+</div>
+<% end %>
+
+<% if @average_rating >=2 && @average_rating <3 %>
+<div class="rating-star">
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate"></span>
+<span class="fa fa-star rate"></span>
+<span class="fa fa-star rate"></span>
+</div>
+<% end %>
+
+<% if @average_rating >=3 && @average_rating <4 %>
+<div class="rating-star">
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate"></span>
+<span class="fa fa-star rate"></span>
+</div>
+<% end %>
+
+<% if @average_rating >=4 && @average_rating <5 %>
+<div class="rating-star">
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate"></span>
+</div>
+<% end %>
+
+<% if @average_rating == 5 %>
+<div class="rating-star">
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate checked"></span>
+<span class="fa fa-star rate checked"></span>
+</div>
+<% end %>

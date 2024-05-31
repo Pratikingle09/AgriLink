@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_one :profile_image, dependent: :destroy
   has_many :reviews
+  acts_as_voter
 
 
   # Include default devise modules. Others available are:

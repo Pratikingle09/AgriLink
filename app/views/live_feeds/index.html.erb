@@ -3,19 +3,32 @@
  <p style="color: green;position:absolute"><%= notice %></p> 
 <%
 =end%>
-<style>
-</style>
 
 
 
 <%= stylesheet_link_tag "live_feed" %>
 
-
-<div class="feed-container">
+<body style="overflow: hidden;">
+<div class="feed-container" >
 <div id="live_feeds">
   <%= render @live_feeds %>
+</div>
+<div id="weather">
+ <%= render "weather_forcast", weather: @weather %> 
 </div>
 </div>
 <div class="ask_question">
 <%= render "form", live_feed: @live_feed %>
 </div>
+</body>
+<script>
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    console.log(latitude , longitude)
+  });
+} else {
+  console.error('Geolocation is not supported by this browser.');
+}
+</script>

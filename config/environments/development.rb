@@ -88,4 +88,9 @@ Rails.application.configure do
     enable_starttls_auto: true, 
   }
 
+
+
+  config.assets.debug = true
+config.assets.compile = true
+
 end

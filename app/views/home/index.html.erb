@@ -25,14 +25,14 @@
 
   <div class="featurs">
 
-    <%= link_to notifications_path do %>
+    <%= link_to notifications_path , class:'link' do %>
   <%= render "cart", acc_data: @cart2 %>
     <% end %>
-    <%= link_to  live_feeds_path do %>
+    <%= link_to  live_feeds_path , class:'link' do %>
   <%= render "cart", acc_data: @cart3 %>
     <% end %>
 
-    <%= link_to products_path do %>
+    <%= link_to products_path  , class:'link' do %>
   <%= render "cart", acc_data: @cart4 %>
     <% end %>
 

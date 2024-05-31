@@ -22,10 +22,21 @@ Rails.application.routes.draw do
   end
 
   get 'my_question/index'
-  get 'learning/index'
   resources :live_feeds do
     resources :answers
   end
+
+
+
+  resources :live_feeds do
+    member do
+      get "like" => "live_feeds#like"
+      get "likes" => "live_feeds#likes"
+
+    end
+  end
+
+
   get 'my_questions/question'
   root to: "home#index"
 

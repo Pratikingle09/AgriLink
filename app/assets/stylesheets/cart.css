@@ -30,6 +30,9 @@ th, td {
     border: 1px solid #ccc; 
     border-radius: 4px;
     box-sizing: border-box; 
+    text-align: center;
+    margin: 0 5px;
+    appearance: none;
 }
 
 .cart-product {
@@ -84,6 +87,29 @@ th, td {
 .checkout-btn:hover {
     background-color: #333; /* Darken the background color on hover */
 }
+
+.quantity-wrapper {
+    display: flex;
+    justify-content:center;
+  }
+  
+  .quantity-wrapper button {
+    width: 30px;
+    height: 30px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding: 0;
+  }
+  
+  .quantity-wrapper button:active {
+    background-color: #e0e0e0;
+  }
+  
 
 @media(max-width:320px){
     .cart-address {

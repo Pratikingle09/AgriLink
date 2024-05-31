@@ -1,0 +1,67 @@
+<!-- app/views/live_feeds/index.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Information</title>
+  <style>
+    .weather-card {
+      max-width: 300px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      font-family: Arial, sans-serif;
+      background:#1679AB;
+      color:white;
+    }
+    .weather-card .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .weather-card .header h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .weather-card .weather-icon {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .weather-card .weather-icon img {
+      width: 100px;
+    }
+    .weather-card .details {
+      text-align: left;
+    }
+    .weather-card .details p {
+      margin: 10px 0;
+    }
+    .details p strong{
+      color:white;
+    }
+  </style>
+</head>
+<body>
+  <% if @weather %>
+    <div class="weather-card">
+      <div class="header">
+        <h2>Weather in <%= @weather['name'] %>, <%= @weather['sys']['country'] %></h2>
+      </div>
+      <div class="weather-icon">
+        <img src="https://openweathermap.org/img/wn/<%= @weather['weather'][0]['icon'] %>@2x.png" alt="<%= @weather['weather'][0]['description'] %>">
+      </div>
+      <div class="details">
+        <p><strong>Temperature:</strong> <%= (@weather['main']['temp'] - 273.15).round(2) %> °C</p>
+        <p><strong>Feels Like:</strong> <%= (@weather['main']['feels_like'] - 273.15).round(2) %> °C</p>
+        <p><strong>Humidity:</strong> <%= @weather['main']['humidity'] %> %</p>
+        <p><strong>Wind Speed:</strong> <%= @weather['wind']['speed'] %> m/s</p>
+        <p><strong>Weather:</strong> <%= @weather['weather'][0]['description'] %></p>
+      </div>
+    </div>
+  <% else %>
+    <div class="error-message">
+      <p><%= @error_message %></p>
+    </div>
+  <% end %>
+</body>
+</html>

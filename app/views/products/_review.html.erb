@@ -1,64 +1,30 @@
 
-<style>
-.checked {
-  color: orange;
-}
-.rate{
-    cursor:pointer;
-}
-.rating-star{
-    position:absolute;
-    top:33rem;
-    left:58.5rem;
-}
-.comm{
-    display:flex;
-    justify-content:center;
-    position:relative;
-}
-.com-btn{
-    background-color:black;
-    color:white;
-    border-radius:10px;
-    padding:10px;
-    position:absolute;
-    margin-left:10px;
-    top:20px;
-}
-.com-input{
-    width:30rem;
-}
-.avg-rating{
-    position:absolute;
-    top:31.7rem;
-    left:65.5rem;
 
-}
-</style>
 
 
 <div class="rating-star">
-<span class="fa fa-star rate"></span>
-<span class="fa fa-star rate"></span>
-<span class="fa fa-star rate"></span>
-<span class="fa fa-star rate"></span>
-<span class="fa fa-star rate"></span>
+<span class="fa fa-star rate fr"></span>
+<span class="fa fa-star rate fr"></span>
+<span class="fa fa-star rate fr"></span>
+<span class="fa fa-star rate fr"></span>
+<span class="fa fa-star rate fr"></span>
 </div>
 <div class="avg-rating">
-<h3><%= @average_rating %>/5.0</h3>
+<div style="line-height:2.3em"><%= render "show_review", rating: @average_rating %></div>
+<h3 style="line-height:0.1em"><%= @average_rating %>/5.0</h3>
 </div>
 
 
 <div class="comm">
 <%= form_with(model: [@product, @reviews], url: review_product_path(@product), local: true) do |form| %>
   <%= form.hidden_field :rating, value: 0, id: 'rating-value' %>
-  <%= form.text_area :comment, placeholder: "Comment", class: "question-body input com-input" %>
+  <%= form.text_area :comment, placeholder: "Comment", class: "question-body input com-input",required: true  %>
   <%= form.submit 'Submit Rating',class:"com-btn" %>
 <% end %>
 </div>
 
 <script>
-    const stars = document.querySelectorAll('.fa-star');
+    const stars = document.querySelectorAll('.fr');
     
     stars.forEach((star, index) => {
         star.addEventListener('click', () => {

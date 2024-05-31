@@ -1,59 +1,21 @@
  
-<style>
-.pro_image{
-  margin-top:10px;
-  width:40px;
-  height:40px
-}
-.profile-info-post{
-  display:flex;
-  gap:10px;
-}
-.post-user-info{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:5px;
-}
-.post-file{
-  width:98%;
-  height:45rem;
-  padding-bottom:20px;
-}
-.like{
-  position:absolute;
-  bottom:10px;
-  left:20px;
-  background-color:transperent;
-}
-.question{
-      position: relative;
-    background-color: #1679AB;
-    width: 90vw;
-    min-height: 2rem;
-    height: auto;
-    border-radius: 5px;
-    padding-left: 20px;
-    text-decoration: none;
-    border: 1px solid;
-    color: #f7f5f5;
-  max-height:80rem;
-}
-</style>
  
- 
+    <div class="body" style="top:0; position:absolute;">
   <%= link_to "Back", live_feeds_path , class:"to-feed" %>
-
 <div class="question-answer">
 <p style="color: green" class="toast"><%= notice %></p>
 
-   <div class="question">
-<%if current_user.id == @live_feed.asked_by%>
+   <div class="question q-a">
+
+ <%if current_user.id == @live_feed.asked_by%> 
+
    <div class="option">
-  <%= link_to image_tag('edit.png',class:"edit"), edit_live_feed_path(@live_feed) %> |
+  <%= link_to image_tag('edit.png',class:"edit"), edit_live_feed_path(@live_feed) %> 
   <%= button_to image_tag('delete.png',class:"edit"), @live_feed,method: :delete %>
 </div>
-  <%end%>
+
+ <%end%> 
+
   <div class="profile-info-post">
   <div>
   <% if @live_feed.user.profile_image&.image&.attached? %>
@@ -67,10 +29,22 @@
        <p><%= @live_feed.user.account_type%> </p>
        </div>
        </div>
-           <p class='q-body'><%= @live_feed.question_body %></p>
+           <p class='q-body' style="text-align: start;"><%= @live_feed.question_body %></p>
            <% if @live_feed.post_image.attached? %>
-  <%= image_tag(@live_feed.post_image, class:"post-file") %>
+  <%= image_tag(@live_feed.post_image, class:"post-file post-ans-file") %>
 <% end %>
+  <div class="like-ans">
+    <div class="like-feature">
+    <span class="likes-count"><%= @live_feed.get_upvotes.size %></span>
+    <%= link_to like_live_feed_path(@live_feed) do %>
+      <i class="fa fa-heart" id="like-btn"></i>
+    <% end %>
+  </div>
+
+      <p class="link" style="margin-top:18px;"><%= @live_feed.answers.count %> Answers</p>
+
+  </div>
+
    <p class="time"> <%= @live_feed.created_at.strftime('%d %b') %></p>
     </div>
 
@@ -78,18 +52,30 @@
  <div class="ans">
 <% @live_feed.answers.each do |ans| %>
 <div class="question">
-  <p class="q-body">
+ <div class="profile-info-post" style="color:black">
+  <div>
+  <% if @live_feed.user.profile_image&.image&.attached? %>
+       <%= image_tag(@live_feed.user.profile_image.image, class:"pro_image p-i")%>
+  <% else%>
+       <%= image_tag "user.png" , class:"pro_image"%>
+    <% end %>
+       </div>
+       <div class="post-user-info" >
+       <p><%= @live_feed.user.username%> </p>|
+       <p><%= @live_feed.user.account_type%> </p>
+       </div>
+       </div>
+  <p class="q-body ans-body">
     <%= ans.answer_body %>
   </p>
-
-    <p class="ans-by"> Answered by
-    <strong>
-    <%= ans.asked_by %>
-    </strong>
-    on 
-    <strong><%= ans.created_at.strftime("%d %b")%></strong>
+    <p class="time" style="padding-top:5px;color:black;"><%= ans.created_at.strftime("%d %b")%></p>
   </p>
-  <%= link_to "edit", edit_live_feed_answer_path(@live_feed,ans) %>
+    <% if current_user.id == ans.user.id %>
+   <div class="option">
+      <%= link_to image_tag('edit.png', class: "edit"), edit_live_feed_answer_path(@live_feed, ans) %>
+      <%= button_to image_tag('delete.png', class: "edit"), live_feed_answer_path(@live_feed, ans), method: :delete%>
+  </div>
+    <% end %>
   </div>
 <% end %>
 </div>
@@ -110,3 +96,9 @@
 <% end %>
 
 </div>
+</div>
+<% if current_user.liked?(@live_feed) %>
+  <script>
+    document.getElementById('like-btn').style.color = "red";
+  </script>
+<% end %>

@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
   # GET /products/1 or /products/1.json
   def show
     @reviews = @product.reviews
-    @average_rating = @reviews.average(:rating).to_f.round(1)
+    @average_rating = (@reviews.average(:rating).to_f / 5).round(1)
   end
 
   # GET /products/new

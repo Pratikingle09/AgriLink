@@ -63,3 +63,11 @@ gem 'webpacker'
 
 
 gem "phonelib", "~> 0.8.8"
+
+gem 'acts_as_votable'
+
+gem 'openweather2'
+
+gem 'faraday'
+
+gem 'geocoder'

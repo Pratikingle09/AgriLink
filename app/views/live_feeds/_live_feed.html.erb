@@ -1,70 +1,39 @@
-
-
-
-<style>
-.pro_image{
-  margin-top:10px;
-  width:40px;
-  height:40px
-}
-.profile-info-post{
-  display:flex;
-  gap:10px;
-}
-.post-user-info{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:5px;
-}
-.post-file{
-  width:98%;
-  height:45rem;
-  padding-bottom:20px;
-}
-.like{
-  position:absolute;
-  bottom:10px;
-  left:20px;
-  background-color:transperent;
-}
-.question{
-      position: relative;
-    background-color: #1679AB;
-    width: 90vw;
-    min-height: 2rem;
-    height: auto;
-    border-radius: 5px;
-    padding-left: 20px;
-    text-decoration: none;
-    border: 1px solid;
-    color: #f7f5f5;
-  max-height:80rem;
-}
-</style>
-
-
-<%= link_to live_feed, class: 'link' do %>
-
-  <div class="question" id="live_feed_<%= live_feed.id %>">
+<div class="question" id="live_feed_<%= live_feed.id %>">
   <div class="profile-info-post">
-  <div>
-  <% if live_feed.user.profile_image&.image&.attached? %>
-       <%= image_tag(live_feed.user.profile_image.image, class:"pro_image p-i")%>
-  <% else%>
-       <%= image_tag "user.png" , class:"pro_image"%>
-    <% end %>
-       </div>
-       <div class="post-user-info" >
-       <p><%= live_feed.user.username%> </p>|
-       <p><%= live_feed.user.account_type%> </p>
-       </div>
-       </div>
-    <p class='q-body'><%= live_feed.question_body %></p>
-<% if live_feed.post_image.attached? %>
-  <%= image_tag(live_feed.post_image, class:"post-file") %>
-<% end %>
-    <p class="time"><%= live_feed.created_at.strftime('%d %b') %></p>
+    <div>
+      <% if live_feed.user.profile_image&.image&.attached? %>
+        <%= image_tag(live_feed.user.profile_image.image, class: "pro_image p-i") %>
+      <% else %>
+        <%= image_tag "user.png", class: "pro_image" %>
+      <% end %>
+    </div>
+    <div class="post-user-info">
+      <p><%= live_feed.user.username %> </p>|
+      <p><%= live_feed.user.account_type %> </p>
+    </div>
   </div>
+  <p class='q-body'><%= live_feed.question_body %></p>
+  <% if live_feed.post_image.attached? %>
+    <%= image_tag(live_feed.post_image, class: "post-file") %>
+  <% end %>
 
+  <p class="time"><%= live_feed.created_at.strftime('%d %b') %></p>
+  <br>
+  <div class="like-ans">
+    <div class="like-feature">
+    <span class="likes-count"><%= live_feed.get_upvotes.size %></span>
+    <%= link_to likes_live_feed_path(live_feed) do %>
+      <i class="fa fa-heart" id="like-btn-<%= live_feed.id %>"></i>
+    <% end %>
+  </div>
+    <%= link_to live_feed, class: 'link' do %>
+      <p style="margin-top:18px;"><%= live_feed.answers.count %> Answers</p>
+    <% end %>
+  </div>
+</div>
+
+<% if current_user.liked?(live_feed) %>
+  <script>
+    document.getElementById('like-btn-<%= live_feed.id %>').style.color = "red";
+  </script>
 <% end %>

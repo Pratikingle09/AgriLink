@@ -33,6 +33,16 @@ class AnswersController < ApplicationController
       render :new
     end
   end
+  def destroy
+  @live_feed = LiveFeed.find(params[:live_feed_id])
+  @answer = @live_feed.answers.find(params[:id])
+  @answer.destroy
+  redirect_to live_feed_path(@live_feed)
+end
+
+
+
+
 
   private
 

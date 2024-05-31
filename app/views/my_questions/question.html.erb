@@ -1,15 +1,52 @@
+<div class="body" style="top:7rem; position:absolute;">
+
+<div id="my_activity">
+
+
 <p style="color: green" class="toast"><%= notice %></p>
 
 <%= stylesheet_link_tag "live_feed" %>
 
-
-<div class="feed-container">
-<div id="question_feeds">
   <% @questions.each do |question| %>
-   <div class="question">
-   <p class='q-title'> <%=question.title %></p>
-   <p class='q-body'> <%=question.question_body %></p>
-   <p class="time"> <%=question.created_at.strftime('%d %b') %></p>
+<div class="question" id="live_feed_<%= question.id %>">
+  <div class="profile-info-post">
+    <div>
+      <% if question.user.profile_image&.image&.attached? %>
+        <%= image_tag(question.user.profile_image.image, class: "pro_image p-i") %>
+      <% else %>
+        <%= image_tag "user.png", class: "pro_image" %>
+      <% end %>
     </div>
+    <div class="post-user-info">
+      <p><%= question.user.username %> </p>|
+      <p><%= question.user.account_type %> </p>
+    </div>
+  </div>
+  <p class='q-body' style="text"><%= question.question_body %></p>
+  <% if question.post_image.attached? %>
+    <%= image_tag(question.post_image, class: "post-file-activity") %>
   <% end %>
+
+  <p class="time"><%= question.created_at.strftime('%d %b') %></p>
+  <br>
+  <div class="like-ans">
+    <div class="like-feature">
+    <span class="likes-count"><%= question.get_upvotes.size %></span>
+    <%= link_to like_live_feed_path(question) do %>
+      <i class="fa fa-heart" id="like-btn-<%= question.id %>"></i>
+    <% end %>
+  </div>
+    <%= link_to live_feed_path(question), class: 'link' do %>
+      <p style="margin-top:18px;"><%= question.answers.count %> Answers</p>
+    <% end %>
+  </div>
+</div>
+
+<% if current_user.liked?(question) %>
+  <script>
+    document.getElementById('like-btn-<%= question.id %>').style.color = "red";
+  </script>
+<% end %>
+  <% end %>
+  
 </div>

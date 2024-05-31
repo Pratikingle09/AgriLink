@@ -1,11 +1,32 @@
+
+
 class LiveFeedsController < ApplicationController
-  before_action :set_live_feed, only: %i[ show edit update destroy]
+  before_action :set_live_feed, only: %i[ show edit update destroy like likes ]
+
+
+
 
   # GET /live_feeds or /live_feeds.json
   def index
     if user_signed_in?
     @live_feeds = LiveFeed.all
     @live_feed = LiveFeed.new
+
+
+
+    
+      @user_location = request.location
+     @latitude = @user_location.latitude || 21.0973
+     @longitude = @user_location.longitude || 77.0538
+
+      begin
+       respo = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?lat=#{@latitude}&lon=#{@longitude}&appid=d9ac7e81afaa607af356f9ce0db02af2")
+       @weather =  JSON.parse(respo.body)
+
+      rescue HTTParty::Error => e
+       @error_message = "Failed to fetch weather data: #{e.message}"
+      end
+
   else 
     redirect_to main_app.error_index_path
   end
@@ -64,6 +85,29 @@ class LiveFeedsController < ApplicationController
   end
 
 
+  def like
+    if !current_user.liked? @live_feed
+      @live_feed.liked_by current_user
+    elsif current_user.liked? @live_feed
+      @live_feed.unliked_by current_user
+    end
+    respond_to do |format|
+      format.html { redirect_to live_feed_path }
+      format.json { render json: { status: 'success' } }
+    end
+  end
+
+  def likes
+    if !current_user.liked? @live_feed
+      @live_feed.liked_by current_user
+    elsif current_user.liked? @live_feed
+      @live_feed.unliked_by current_user
+    end
+    respond_to do |format|
+      format.html { redirect_to live_feeds_path }
+      format.json { render json: { status: 'success' } }
+    end
+  end
 
 
 
