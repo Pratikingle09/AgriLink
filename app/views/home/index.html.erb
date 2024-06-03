@@ -74,7 +74,48 @@ Let's cultivate a brighter future for agriculture together!</div>
     </div>
     </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  getLocation();
+});
 
+function getLocation() {
+  if (navigator.geolocation) {
+    const position=navigator.geolocation.getCurrentPosition();
+    sendLocation(position);
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
+function sendLocation(position) {
+  const latitude = position.coords.latitude;
+  const longitude = position.coords.longitude;
+  const authenticityToken = document.querySelector("meta[name=csrf-token]").content;
+
+  sendToController(latitude, longitude, authenticityToken);
+}
+
+function sendToController(latitude, longitude, token) {
+
+  const req = new XMLHttpRequest();
+
+  req.open("POST", "/home/send_location", true);
+  req.setRequestHeader("Content-Type", "application/json");
+  req.setRequestHeader("X-CSRF-Token", token);
+
+
+  const data = JSON.stringify({
+    latitude: latitude,
+    longitude: longitude
+  });
+
+  req.send(data);
+}
+
+
+
+</script>
 
 
 

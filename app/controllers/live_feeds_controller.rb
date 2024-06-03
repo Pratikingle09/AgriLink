@@ -12,12 +12,8 @@ class LiveFeedsController < ApplicationController
     @live_feeds = LiveFeed.all
     @live_feed = LiveFeed.new
 
-
-
-    
-      @user_location = request.location
-     @latitude = @user_location.latitude || 21.0973
-     @longitude = @user_location.longitude || 77.0538
+    @latitude = session[:latitude]
+    @longitude = session[:longitude]
 
       begin
        respo = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?lat=#{@latitude}&lon=#{@longitude}&appid=d9ac7e81afaa607af356f9ce0db02af2")
@@ -108,6 +104,7 @@ class LiveFeedsController < ApplicationController
       format.json { render json: { status: 'success' } }
     end
   end
+
 
 
 

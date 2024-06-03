@@ -1,5 +1,16 @@
 
 
+<% if @average_rating <1%>
+<div class="rating-star">
+<span class="fa fa-star rate"></span>
+<span class="fa fa-star rate"></span>
+<span class="fa fa-star rate"></span>
+<span class="fa fa-star rate"></span>
+<span class="fa fa-star rate"></span>
+</div>
+<% end %>
+
+
 <% if @average_rating >0 && @average_rating <2 %>
 <div class="rating-star">
 <span class="fa fa-star rate checked"></span>

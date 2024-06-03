@@ -18,4 +18,14 @@ class HomeController < ApplicationController
           background:"#7DEC3B7"
         }
   end
+
+  def send_location
+    latitude = params[:latitude]
+    longitude = params[:longitude]
+
+    session[:latitude] = latitude
+    session[:longitude] = longitude
+    
+    render json: { status: 'success' }
+  end
 end

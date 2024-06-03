@@ -228,7 +228,9 @@
     color: rgb(233, 238, 238);
 
   }
-
+.descr{
+   height: 120px;
+}
 
 @media(min-width:320px){
     .show{

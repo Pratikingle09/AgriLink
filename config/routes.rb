@@ -39,6 +39,8 @@ Rails.application.routes.draw do
 
   get 'my_questions/question'
   root to: "home#index"
+  post '/home/send_location', to: 'home#send_location'
+
 
   devise_for :user, controllers:{ registrations:'user/registrations'}
 
